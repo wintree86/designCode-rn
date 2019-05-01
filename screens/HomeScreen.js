@@ -126,7 +126,9 @@ class HomeScreen extends Component {
                   <TouchableOpacity
                     key={idx}
                     onPress={() => {
-                      this.props.navigation.push("Section");
+                      this.props.navigation.push("Section", {
+                        section: card
+                      });
                     }}
                   >
                     <Card
