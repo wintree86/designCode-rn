@@ -14,9 +14,10 @@ import Logo from "../components/Logo";
 import Course from "../components/Cource";
 import Menu from "../components/Menu";
 import { connect } from "react-redux";
+import Avatar from "../components/Avatar";
 
 function mapStateToProps(state) {
-  return { action: state.action };
+  return { action: state.action, name: state.name };
 }
 function mapDispatchToProps(dispatch) {
   return {
@@ -90,10 +91,10 @@ class HomeScreen extends Component {
                   onPress={this.props.openMenu}
                   style={{ position: "absolute", top: 0, left: 20 }}
                 >
-                  <Avatar source={require("../assets/avatar.jpg")} />
+                  <Avatar />
                 </TouchableOpacity>
                 <Title>Welcome back,</Title>
-                <Name>Ryan</Name>
+                <Name>{this.props.name}</Name>
                 <NotificationIcon
                   style={{ position: "absolute", right: 20, top: 5 }}
                 />
@@ -167,13 +168,6 @@ const Subtitle = styled.Text`
   margin-left: 20px;
   margin-top: 20px;
   text-transform: uppercase;
-`;
-
-const Avatar = styled.Image`
-  width: 44px;
-  height: 44px;
-  background: black;
-  border-radius: 22px;
 `;
 
 const Container = styled.View`
