@@ -2,6 +2,16 @@ import React from "react";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import AppNavigator from "./navigator/AppNavigator";
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
+
+const client = new ApolloClient({
+  uri: "https://graphql.contentful.com/content/v1/spaces/pes5i6puk0hs",
+  credentials: "same-origin",
+  headers: {
+    Authorization: "Bearer rWx1CDAgtinrsrFGQDBVXbI8joGoHK1j16qsEUaazXc"
+  }
+});
 
 const initialState = {
   action: "",
@@ -24,9 +34,11 @@ const reducer = (state = initialState, action) => {
 const store = createStore(reducer);
 
 const App = () => (
-  <Provider store={store}>
-    <AppNavigator />
-  </Provider>
+  <ApolloProvider client={client}>
+    <Provider store={store}>
+      <AppNavigator />
+    </Provider>
+  </ApolloProvider>
 );
 
 export default App;
